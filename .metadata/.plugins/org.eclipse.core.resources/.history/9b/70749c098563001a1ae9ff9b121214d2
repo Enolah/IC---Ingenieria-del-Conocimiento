@@ -1,0 +1,182 @@
+package star;
+
+import java.io.IOException;
+import java.util.Scanner;
+
+import star.AEstrella.aEstrella;
+
+public class Main {
+
+	public static boolean ejecutarPorPasos() throws IOException {
+		String opcion = null;
+
+		System.out.print("\n");
+		do {
+			System.out.print("EJECUTAR POR PASOS EL ALGORITMO [SI/NO] : ");
+			opcion = opcion.toUpperCase();
+		} while (opcion.compareTo("SI") != 0 && opcion.compareTo("NO") != 0);
+		System.out.print("\n");
+		System.in.read();
+		return opcion.compareTo("SI") != 0;
+	}
+
+	public static void comenzarPrograma() {
+
+		String opcion;
+
+		rejilla miRejilla = null;
+
+		aEstrella algoritmo = null;
+
+		do {
+
+			System.out.print("1 -- LEER TABLERO DE UN FICHERO.");
+			System.out.print("\n");
+			System.out.print("2 -- INTRODUCIR TABLERO DESDE CONSOLA.");
+			System.out.print("\n");
+			System.out.print("3 -- SALIR DEL PROGRAMA.");
+			System.out.print("\n");
+			System.out.print("INTRODUCE UNA OPCION: ");
+			opcion = opcion.toUpperCase();
+
+			if (opcion == "1") {
+
+				miRejilla = new rejilla();
+
+				try {
+
+					miRejilla.leerDeFichero();
+
+					algoritmo = new aEstrella(miRejilla, ejecutarPorPasos());
+
+					if (miRejilla.getPuntosDePaso().size() > 0) {
+
+						algoritmo.resolverConPuntosDePaso();
+					}
+
+					else {
+
+						algoritmo.resolver();
+					}
+
+					algoritmo = null;
+
+				} catch (RuntimeException e) {
+
+					System.out.print(e.getMessage());
+					System.out.print("\n");
+
+				}
+
+				miRejilla = null;
+
+			}
+
+			else if (opcion == "2") {
+
+				miRejilla = new rejilla();
+
+				miRejilla.introducirPorConsola();
+
+				algoritmo = new aEstrella(miRejilla, ejecutarPorPasos());
+
+				if (miRejilla.getPuntosDePaso().size() > 0) {
+					algoritmo.resolverConPuntosDePaso();
+				} else {
+					algoritmo.resolver();
+				}
+				algoritmo = null;
+				miRejilla = null;
+			}
+		} while (opcion != "3");
+	}
+
+	public static void main(String[] args) {
+		comenzarPrograma();
+	}
+
+	// public static void reconstruirElCamino()
+	// {
+	// coordenadas recorridoInverso = new coordenadas();
+	// Nodo nodoActual = redDeNodos[redDeNodos.size() - 1];
+	// while (nodoActual.getPadre()[0] != null)
+	// {
+	// recorridoInverso.push_back(nodoActual.getPadre()[0].getPosicion());
+	// nodoActual = nodoActual.getPadre()[0];
+	// }
+	// if (ejecutarPorPasos)
+	// {
+	// for (int i = recorridoInverso.size() - 1 ; i > -1 ; --i)
+	// {
+	// rejillaObjetivo.setElementoInterno(C_RECORRIDO,recorridoInverso[i]);
+	// System.out.print(rejillaObjetivo);
+	// System.out.print("\n");
+	// System.out.print("PRESIONA 'ENTER' PARA CONTINUAR.");
+	// System.out.print("\n");
+	// System.out.print("\n");
+	// System.out.print("-----------------------------------------------");
+	// System.out.print("\n");
+	// System.in.read()
+	// }
+	// }
+	// else
+	// {
+	// for (int i = recorridoInverso.size() - 1 ; i > -1 ; --i)
+	// {
+	// rejillaObjetivo.setElementoInterno(C_RECORRIDO,recorridoInverso[i]);
+	// }
+	// }
+	// rejillaObjetivo.setElementoInterno(C_SALIDA,rejillaObjetivo.getSalida());
+	// for (coordenada meta : rejillaObjetivo.getMetas())
+	// {
+	// rejillaObjetivo.setElementoInterno(C_META,meta);
+	// }
+	// for (coordenada puntoDePaso : rejillaObjetivo.getPuntosDePaso())
+	// {
+	// rejillaObjetivo.setElementoInterno(C_PUNTO_DE_PASO,puntoDePaso);
+	// }
+	// System.out.print(rejillaObjetivo);
+	// System.out.print("\n");
+	// }
+	//
+	// // C++ TO JAVA CONVERTER WARNING: The following constructor is declared
+	// // outside of its associated class:
+	// public static aEstrella(rejilla r, boolean pasos)
+	// {
+	// this.solucionEncontrada = false;
+	// this.problemaInsatisfactible = false;
+	// this.rejillaObjetivo = r;
+	// this.ejecutarPorPasos = pasos;
+	// }
+	//
+	// public final void close() {
+	// for (Nodo nodo : vectorDeReciclaje) {
+	// if (nodo != null) {
+	// nodo.close();
+	// }
+	// }
+	// }
+	//
+	// public static final void resolverConPuntosDePaso()
+	// {
+	// double costeTotalDelRecorrido = 0;
+	// coordenadas metasIniciales = rejillaObjetivo.getMetas();
+	// for (int i = 0; i < rejillaObjetivo.getPuntosDePaso().size() &&
+	// !problemaInsatisfactible ; ++i)
+	// {
+	// rejillaObjetivo.setMetas({rejillaObjetivo.getPuntosDePaso()[i]});
+	// resolver();
+	// costeTotalDelRecorrido += redDeNodos[redDeNodos.size() -
+	// 1].getCosteTotal();
+	// if (solucionEncontrada)
+	// {
+	// solucionEncontrada = false;
+	// }
+	// while (!listaAbierta.empty())
+	// {
+	// listaAbierta.pop();
+	// }
+	//
+	//
+
+}

@@ -1,0 +1,9 @@
+package star;
+
+public class comparador {
+
+	public final boolean functorMethod(Nodo n1, Nodo n2)
+	{
+		return n1.getCosteTotal() > n2.getCosteTotal();
+	}
+}

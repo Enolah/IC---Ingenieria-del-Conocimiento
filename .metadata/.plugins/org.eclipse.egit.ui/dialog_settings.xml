@@ -10,7 +10,7 @@
 		<item value="700" key="DIALOG_WIDTH"/>
 		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 		<item value="481" key="DIALOG_HEIGHT"/>
-		<item value="619" key="DIALOG_X_ORIGIN"/>
+		<item value="276" key="DIALOG_X_ORIGIN"/>
 		<item value="204" key="DIALOG_Y_ORIGIN"/>
 		<list key="sashWeights">
 			<item value="600"/>
@@ -20,8 +20,8 @@
 	<section name="GitCommitMessageComponent">
 	</section>
 	<section name="org.eclipse.egit.ui.internal.staging.StagingView">
-		<item value="200,200" key="STAGING_SASH_FORM_WEIGHT"/>
+		<item value="500,500" key="STAGING_SASH_FORM_WEIGHT"/>
 		<item value="false" key="sortItemState"/>
-		<item value="200,200" key="HORIZONTAL_SASH_FORM_WEIGHT"/>
+		<item value="500,500" key="HORIZONTAL_SASH_FORM_WEIGHT"/>
 	</section>
 </section>

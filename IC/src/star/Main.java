@@ -6,16 +6,12 @@ import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.border.Border;
+import javax.swing.JLabel;
 
+import javax.swing.JPanel;
 
 
 
@@ -34,7 +30,7 @@ public class Main extends JFrame{
 		tableroGUI1 = new TableroGUI( 10, true ); //tipo tablero
         this.setLocationRelativeTo( null );
         setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
-     //   this.setSize(500, 500);
+    
         
         JPanel panel = new JPanel();
         JPanel panel2 = new JPanel();
@@ -71,17 +67,19 @@ public class Main extends JFrame{
         
         this.getContentPane().add(panel,BorderLayout.WEST);
         
-        JButton b= new JButton("Aceptar");
+        
+        
+        JButton b= new JButton("Replay");
         b.setOpaque(true);
-//		b.addActionListener(new ActionListener() {
-//			
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				map.setReferencias(CasillasGUI., y)
-//				
-//			}
-//		});
-//        
+        b.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+		
+				main(null);	//se restaura el panel 
+
+			}});
+        
+        
         JButton b1= new JButton("Salir");
         b1.setOpaque(true);
         b1.addActionListener((new ActionListener() {
@@ -90,20 +88,13 @@ public class Main extends JFrame{
         		   }
         		 }));
         
-        JButton b2= new JButton("Replay");
-        b2.setOpaque(true);
-        b2.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-			//	casillas.initComponents();
-			//	tableroGUI1.initComponents();
-			//	init();	//se restaura el panel pero la ejecucion ha termnado
-			//inicializar matriz??
-			}});
+       
+        JLabel lbl1 = new JLabel();
+        lbl1.setOpaque(false);
         
         panel2.add(b);
         panel2.add(b1);
-        panel2.add(b2);
+        panel2.add(lbl1);
        
         this.getContentPane().add(panel2,BorderLayout.CENTER);
         
@@ -112,13 +103,11 @@ public class Main extends JFrame{
         
     }
 		
-	
-	
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				Mio v = new Mio();
+				Main v = new Main();
 				 v.setVisible(true);
 			}
 		});

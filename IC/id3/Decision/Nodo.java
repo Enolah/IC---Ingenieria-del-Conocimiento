@@ -105,11 +105,9 @@ public class Nodo {
 
 
 	public void addPositivo() {
-		// TODO Auto-generated method stub
 		positivos++;
 	}
 	public void addNegativo() {
-		// TODO Auto-generated method stub
 		negativos++;
 	}
 	

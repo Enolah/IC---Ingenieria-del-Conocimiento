@@ -11,13 +11,13 @@ import ID3.ID3;
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
 	
 		ID3 id3 = new  ID3();
 		Nodo arbol;
 		
 		try {
+			//Introducimos los archivos .txt que queremos leer
 			id3.leerListaAtributos("AtributosJuego.txt");
 			arbol= id3.leerOpciones("Juego.txt");
 			
@@ -33,7 +33,7 @@ public class Main {
 		
 		
 		}catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			JOptionPane.showMessageDialog(null, "Archivos  no encontrados", "Error",
 					JOptionPane.ERROR_MESSAGE);
 		}

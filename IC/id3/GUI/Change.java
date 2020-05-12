@@ -22,8 +22,8 @@ public class Change extends JDialog{
 	public static final int CANCEL_OPTION=1;
 	private int result= -1;
 	
-	private JComboBox<Object> time; //vehiculos;
-	private JComboBox<Object> temp; //hay que cambiarlo por un jCombo box, tal y como hicimos en otro ejercicio
+	private JComboBox<Object> time;
+	private JComboBox<Object> temp; 
 	private JComboBox<Object> hume;
 	private JComboBox<Object> vien;
 
@@ -39,7 +39,8 @@ public class Change extends JDialog{
 		
 		JPanel panelPrincipal = new JPanel();
 		panelPrincipal.setLayout(new BorderLayout());
-		JLabel la = new JLabel ("<html>Selecciona los datos deseados para los atributos </html>");
+		JLabel la = new JLabel ("<html>Selecciona los datos deseados para los atributos."
+				+ "Pulsa OK para confirmar los datos </html>");
 		
 		panelPrincipal.add(la, BorderLayout.NORTH);
 		JLabel tiempo= new JLabel ("Tiempo Exterior: ");
@@ -86,7 +87,7 @@ public class Change extends JDialog{
 		aceptar.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				
 				result=OK_OPTION;
 				setVisible(false);
 				dispose();
@@ -131,10 +132,9 @@ public class Change extends JDialog{
 	
 	public int showConfirmDialog(String title){
 		setTitle(title);
-		setLocationRelativeTo(getParent()); //para que la ventana 
-											//salga en el centro
+
 		pack();
-		setSize(350,400);
+		setSize(650,150);
 		setVisible(true);
 		return result;
 	}

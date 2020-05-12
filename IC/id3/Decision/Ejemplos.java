@@ -42,7 +42,6 @@ public class Ejemplos {
 	}
 
 	public void add(ArrayList<String> ejem) {
-		// TODO Auto-generated method stub
 		ejemplo.add(ejem);
 		
 	}

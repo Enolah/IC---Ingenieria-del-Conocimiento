@@ -2,15 +2,14 @@ package GUI;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
+
 import java.awt.FlowLayout;
-import java.awt.GridLayout;
+
 import java.awt.Label;
-import java.awt.Panel;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
+
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
@@ -19,7 +18,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
+
 import javax.swing.border.EmptyBorder;
 
 import com.mxgraph.layout.mxIGraphLayout;
@@ -28,22 +27,16 @@ import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.view.mxGraph;
 
 import Decision.Atributo;
-import Decision.Ejemplos;
+
 import Decision.Nodo;
 
 public class VistaPrincipal  extends JFrame{
 
-	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	Change myDialog;
 	private JPanel botonera;
 	private JPanel arbolPanel;
 	private JPanel pnlOpciones;
-	private JButton boton;
-	private JTextField jTOpcion;
 	private mxGraph graph;
 	private Label result;
 	private Label resultado;
@@ -112,54 +105,28 @@ public class VistaPrincipal  extends JFrame{
       final mxGraphComponent graphComponent = new mxGraphComponent(graph);
       graphComponent.setBackground(Color.WHITE);
 	
-	
+    JPanel pnlEncabezado= new JPanel();
+    pnlEncabezado.setLayout(new BorderLayout());
 	botonera = new JPanel();
 	arbolPanel = new JPanel();
 	arbolPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
 	
 	arbolPanel.add(graphComponent);
-	//arbolPanel.setSize(graphComponent.getSize());
+
 	this.add(graphComponent,BorderLayout.CENTER);
 
-	boton = new JButton("Buscar");
-	
-	boton.addActionListener(new ActionListener( ) {
-		
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-			comprueba();
-		}
-	});
+
 	
 	botonera.setLayout(new FlowLayout(FlowLayout.CENTER, 1,0));
 	botonera.setBorder(new EmptyBorder(10, 10, 10, 10));
 	
-	jTOpcion = new JTextField("Introduzca los atributos separados por comas");
 	
-	jTOpcion.addFocusListener(new FocusListener() {
-		
-		@Override
-		public void focusLost(FocusEvent arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void focusGained(FocusEvent arg0) {
-			// TODO Auto-generated method stub
-			jTOpcion.selectAll();
-		}
-	});
-	botonera.add(jTOpcion);
-	botonera.add(boton);
-	
-	result = new Label("Resultado");
+	result = new Label("Resultado de los Datos introducidos: Jugar= ");
 	resultado = new Label("         ");
 	
 	botonera.add(result);
 	botonera.add(resultado);
-	this.add(botonera,BorderLayout.PAGE_END);
+	pnlEncabezado.add(botonera,BorderLayout.PAGE_END);
 
 
 	pnlOpciones= new JPanel();
@@ -173,18 +140,28 @@ public class VistaPrincipal  extends JFrame{
 		public void actionPerformed(ActionEvent e) {
 		
 			myDialog = new Change();
-			int res = myDialog.showConfirmDialog("Cambio de datos");
+			int res = myDialog.showConfirmDialog("Seleccion de nuevos atributos para el juego");
 			if (res == 0) 
-				//System.out.println(myDialog.getHume());
 				comprueba();
 			
 			
 		}
 	});
 	
+	JButton btnExit= new JButton("Salir");
+	btnExit.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			exit();
+			
+		}
+	});
 	
 	pnlOpciones.add(btnDatos);
-	this.add(pnlOpciones,BorderLayout.PAGE_START);
+	pnlOpciones.add(btnExit);
+	pnlEncabezado.add(pnlOpciones,BorderLayout.PAGE_START);
+	this.add(pnlEncabezado,BorderLayout.PAGE_START);
 	this.setSize(graphComponent.getSize());
 	
 	
@@ -192,6 +169,16 @@ public class VistaPrincipal  extends JFrame{
 	this.setResizable(false);
 	this.setVisible(true);
 	
+	}
+	
+	public void exit(){
+		int confirm = JOptionPane.showOptionDialog(
+	             null, "¿Quieres salir de la aplicacion?", 
+	             "Confirmacion de salida", JOptionPane.YES_NO_OPTION, 
+	             JOptionPane.QUESTION_MESSAGE, null, null, null);
+	        if (confirm == 0) 
+	           System.exit(0);
+	        
 	}
 
 	private void recursivoPinta(Nodo padre, mxGraph graph, Object verticePadre){
@@ -232,10 +219,6 @@ public class VistaPrincipal  extends JFrame{
 	
 	private void comprueba(){
 
-		String texto=jTOpcion.getText();
-		
-		texto = texto.trim();
-		String op[] = texto.split(",");
 		
 		ArrayList<String> aux= new ArrayList<String>();
 		
@@ -244,9 +227,7 @@ public class VistaPrincipal  extends JFrame{
 		aux.add(myDialog.getHume());
 		aux.add(myDialog.getVien());
 		
-//		for(String ejemplo: op){
-//			aux.add(ejemplo);
-//		}
+
 		for (String s : aux) {
 			System.out.println(s);
 		}

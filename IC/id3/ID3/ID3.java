@@ -129,14 +129,14 @@ public class ID3 {
 			}
 			atr.actualiza();
 			double aux = atr.getMerito();
-		//	System.out.println(atr.getName() + atr.getMerito());
+	
 			if (aux < meritoMejor) {
 				meritoMejor = aux;
 				atrMejor = atr;
 			}
 			++i;
 		}
-		//System.out.println(atrMejor.getName() + " " + atrMejor.getMerito());
+
 		Nodo mejor = new Nodo(new ArrayList<Nodo>(), atrMejor.getPositivos(), atrMejor.getNegativos(), 0,
 				atrMejor.getMerito(), atrMejor.getName());
 

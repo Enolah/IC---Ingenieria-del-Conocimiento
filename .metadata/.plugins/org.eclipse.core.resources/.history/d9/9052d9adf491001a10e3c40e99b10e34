@@ -1,0 +1,10 @@
+package GUI;
+
+public class Change {
+
+	public int showConfirmDialog(String string) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

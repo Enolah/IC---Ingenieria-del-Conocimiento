@@ -18,8 +18,8 @@ public class Main {
 		
 		try {
 			//Introducimos los archivos .txt que queremos leer
-			id3.leerListaAtributos("AtributosJuego.txt");
-			arbol= id3.leerOpciones("Juego.txt");
+			id3.leerListaAtributos(args[0].toString());
+			arbol= id3.leerOpciones(args[1].toString());
 			
 			
 			VistaPrincipal vista = VistaPrincipal.getInstance();

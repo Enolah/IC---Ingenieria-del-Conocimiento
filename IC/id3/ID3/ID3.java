@@ -60,12 +60,12 @@ public class ID3 {
 
 	public Nodo leerOpciones(String archivo) throws IOException {
 
-		String currentDir = new File("").getAbsolutePath();
+		//String currentDir = new File("").getAbsolutePath();
 
-		File newFile = new File(currentDir, archivo);
+		//File newFile = new File(currentDir, archivo);
 
 		String cadena;
-		FileReader lector = new FileReader(newFile);
+		FileReader lector = new FileReader(archivo);
 		BufferedReader buffer = new BufferedReader(lector);
 		
 			// LEER EL ARCHIVO HASTA EL FINAL DE ARCHIVO

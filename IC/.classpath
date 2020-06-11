@@ -6,8 +6,10 @@
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="IC/lib"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="src" path="teoremas"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="lib" path="lib/jgraphx.jar"/>
 	<classpathentry kind="lib" path="C:/Users/paula.nieta/Documents/UNI Software/4ºcurso grupoE/IC Ingenieria del Conocimiento/PRACTICAS/Practica 02/Nueva carpeta/Algoritmo-ID_3-master/Algoritmo-ID_3-master/jgraphx.jar"/>
+	<classpathentry kind="lib" path="lib/Jama-1.0.3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

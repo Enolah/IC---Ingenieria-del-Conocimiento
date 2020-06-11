@@ -1,9 +1,0 @@
-package GUI;
-
-import javax.swing.JFrame;
-
-public class Fichero extends JFrame{
-
-	private static final long serialVersionUID = 1L;
-
-}

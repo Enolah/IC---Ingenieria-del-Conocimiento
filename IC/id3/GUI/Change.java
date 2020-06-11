@@ -62,7 +62,7 @@ public class Change extends JDialog{
 		
 		JLabel viento= new JLabel ("Viento: ");
 		vien = new JComboBox<Object>();
-		vien.addItem("verdadero");
+		vien.addItem("verdad");
 		vien.addItem("falso");
 		
 		

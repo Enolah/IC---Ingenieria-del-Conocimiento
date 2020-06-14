@@ -4,11 +4,9 @@ import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.concurrent.BrokenBarrierException;
 import java.util.function.IntToDoubleFunction;
 
 import javax.swing.BoxLayout;
@@ -18,7 +16,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
 import Clase.Clase;
@@ -50,45 +47,59 @@ public class LLoydPanel extends JDialog{
 		
 		pnlL.setLayout(new BorderLayout());
 		pnlL.setPreferredSize(new Dimension(600, 600));
-		
 		JPanel informacion = new JPanel();
 		JLabel titulo = new  JLabel("Informacion:");
 		titulo.setFont(new Font("Arial", Font.BOLD, 18));
-		informacion.setLayout(new BorderLayout());
-		informacion.add(titulo, BorderLayout.NORTH);
-		
+		informacion.add(titulo);
+		informacion.setLayout(new BoxLayout(informacion, BoxLayout.Y_AXIS));
+		pnlL.add(informacion, BorderLayout.NORTH);
 
 		//CENTRO DE LAS CLASES 
 		JPanel centros = new JPanel();
-		centros.setLayout(new BorderLayout());
-		centros.setBorder(new EmptyBorder(10, 10, 10, 10));
 		
+		centros.setBorder(new EmptyBorder(10, 10, 10, 10));
 
 		JLabel tituloCentros = new  JLabel("Centros:");
 		tituloCentros.setFont(new Font("Arial", Font.BOLD, 18));		
-		centros.add(tituloCentros, BorderLayout.NORTH);
+		centros.setLayout(new BoxLayout(centros, BoxLayout.Y_AXIS));
+		centros.add(tituloCentros);
+		
+		informacion.add(centros);
 		
 		JPanel c1 = new JPanel();
 		c1.setBorder(new EmptyBorder(10, 10, 10, 10));
-		c1.setLayout(new GridLayout(2,1));
+		centros.add(c1);
+		c1.setLayout(new BoxLayout(c1, BoxLayout.Y_AXIS));
 		
-		JLabel x= new JLabel("4.6 3.0 4.0 0.0");
-		c1.add(x);
-		JLabel y= new JLabel("6.8 3.4 4.6 0.7");
-		c1.add(y);
-		
-		centros.add(c1,BorderLayout.CENTER);
-		informacion.add(centros, BorderLayout.CENTER);
+		//CLASES
+		clases = new ArrayList<Clase>();
+		clases= getClases();
+		for(Clase clase : clases) {
+			JTextArea textField = new JTextArea();
+			JLabel label = new JLabel(clase.getNombreElemento());
+			textField.setEditable(false);
+			textField.setAlignmentX(Component.LEFT_ALIGNMENT);
+			textField.setText(clase.getCentroString());
+			c1.add(label);
+			c1.add(textField);
+			textField.setMaximumSize( 
+				     new Dimension(200, textField.getPreferredSize().height) );
+			textField.setPreferredSize( 
+				     new Dimension(200, textField.getPreferredSize().height) );
+		}
+		informacion.add(c1);
 		
 		
 		//PARAMETROS DE CONFIGURACION
 		JPanel panel = new JPanel();
-		panel.setLayout(new GridLayout(4, 1));
 		panel.setBorder(new EmptyBorder(10, 10, 10, 10));
 		JLabel tituloParams = new  JLabel("Parametros:");
 		tituloParams.setFont(new Font("Arial", Font.BOLD, 18));	
 		tituloParams.setBorder(new EmptyBorder(10, 10, 10, 10));
 		panel.add(tituloParams);
+		informacion.add(panel);
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+				
 			
 		JLabel lblNewLabel = new JLabel("Tolerancia = 0.0000000001");
 		panel.add(lblNewLabel);
@@ -100,14 +111,12 @@ public class LLoydPanel extends JDialog{
 		panel.add(razon);
 		
 		panel.setPreferredSize(informacion.getPreferredSize());
+	
 		
-		
-		informacion.add(panel,BorderLayout.SOUTH);
-		pnlL.add(informacion, BorderLayout.NORTH);
 		
 		panelResultados = new JPResultados();
-	//	panelResultados.setPreferredSize(new Dimension(180,600));
-		pnlL.add(panelResultados,BorderLayout.SOUTH);
+		panelResultados.setPreferredSize(new Dimension(180,600));
+		pnlL.add(panelResultados,BorderLayout.CENTER);
 		
 		JButton btnComprobar = panelResultados.getButton();
 		

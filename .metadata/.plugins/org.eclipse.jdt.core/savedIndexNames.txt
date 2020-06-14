@@ -16,7 +16,6 @@ INDEX VERSION 1.130+C:\hlocal\IC---Ingenieria-del-Conocimiento\.metadata\.plugin
 364096953.index
 1691942440.index
 2845807539.index
-1418324640.index
 3384131066.index
 753608048.index
 165794779.index

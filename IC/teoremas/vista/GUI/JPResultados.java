@@ -9,7 +9,7 @@ import java.awt.Font;
 import javax.swing.BoxLayout;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.border.TitledBorder;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 

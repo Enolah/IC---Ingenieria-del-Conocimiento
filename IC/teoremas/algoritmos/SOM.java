@@ -104,30 +104,30 @@ public class SOM
 		return mejor_centro;
 	}
 	
-	public static void main (String args[]) {
-		double[][] datos = {
-				{1, 3},
-				{1, 5},
-				{2, 2},
-				{6, 3},
-				{6, 4},
-				{7, 3}
-		};
-		
-		double[][] centros = {
-				{1, 4},
-				{7, 2}
-		};
-		
-		String[] clases = {
-				"c1",
-				"c2"
-		};
-		
-		SOM som = new SOM(centros, clases, datos, (pasada) -> (1.0/(10+pasada)), 1, 0.8, Math.pow(10, -6), 0.2, 5);
-		
-		double[] prueba = {6, 2};
-		
-		System.out.println(som.predecirClase(prueba));
-	}
+//	public static void main (String args[]) {
+//		double[][] datos = {
+//				{1, 3},
+//				{1, 5},
+//				{2, 2},
+//				{6, 3},
+//				{6, 4},
+//				{7, 3}
+//		};
+//		
+//		double[][] centros = {
+//				{1, 4},
+//				{7, 2}
+//		};
+//		
+//		String[] clases = {
+//				"c1",
+//				"c2"
+//		};
+//		
+//		SOM som = new SOM(centros, clases, datos, (pasada) -> (1.0/(10+pasada)), 1, 0.8, Math.pow(10, -6), 0.2, 5);
+//		
+//		double[] prueba = {6, 2};
+//		
+//		System.out.println(som.predecirClase(prueba));
+//	}
 }

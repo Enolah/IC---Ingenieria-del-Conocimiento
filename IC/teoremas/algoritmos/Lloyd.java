@@ -82,34 +82,34 @@ public class Lloyd {
 		return clases[competir(ejemplo)];
 	}
 	
-	public static void main (String args[]) {
-		
-		// El ejercicio de las transparencias
-		double[][] centros_iniciales = {
-				{1,4},
-				{7,2}
-		};
-		String[] clases = {
-				"c1",
-				"c2"
-		};
-		double[][] entrenamiento = new double[][] {
-			{1,1},
-			{1,3},
-			{1,5},
-			{2,2},
-			{2,3},
-			{6,3},
-			{6,4},
-			{7,1},
-			{7,3},
-			{7,5}
-		};
-		
-		double[] ejemplo = new double[]{6,2};
-		
-		Lloyd clasificador = new Lloyd(centros_iniciales, clases, entrenamiento, (pasada) -> 0.1, Math.pow(10, -10), 10);
-		System.out.println(clasificador.predecirClase(ejemplo));
-	}
+//	public static void main (String args[]) {
+//		
+//		// El ejercicio de las transparencias
+//		double[][] centros_iniciales = {
+//				{1,4},
+//				{7,2}
+//		};
+//		String[] clases = {
+//				"c1",
+//				"c2"
+//		};
+//		double[][] entrenamiento = new double[][] {
+//			{1,1},
+//			{1,3},
+//			{1,5},
+//			{2,2},
+//			{2,3},
+//			{6,3},
+//			{6,4},
+//			{7,1},
+//			{7,3},
+//			{7,5}
+//		};
+//		
+//		double[] ejemplo = new double[]{6,2};
+//		
+//		Lloyd clasificador = new Lloyd(centros_iniciales, clases, entrenamiento, (pasada) -> 0.1, Math.pow(10, -10), 10);
+//		System.out.println(clasificador.predecirClase(ejemplo));
+//	}
 	
 }

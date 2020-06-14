@@ -405,7 +405,7 @@ private void cambiaKmedias() {
 private void cargarEjemploDesdeArchivo() {
 	
 	JFileChooser jf = new JFileChooser();
-	FileNameExtensionFilter filter = new FileNameExtensionFilter( ".txt", "text");
+	FileNameExtensionFilter filter = new FileNameExtensionFilter( "text", ".txt");
 	jf.setFileFilter(filter);
 	int resultado= jf.showDialog(instance, "Cargar");
 	

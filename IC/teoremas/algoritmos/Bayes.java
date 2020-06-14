@@ -1,5 +1,5 @@
 package algoritmos;
-import java.util.ArrayList;
+
 import java.util.HashMap;
 
 import Jama.Matrix;
@@ -85,7 +85,7 @@ public class Bayes {
 		return base*Math.exp(exponente);
 	}
 	
-	public static void main (String[] args) {
+	/*public static void main (String[] args) {
 		Bayes v = new Bayes();
 		double setosa[][] = new double[][]{
 				{5.1,3.5,1.4,0.2},
@@ -197,6 +197,6 @@ public class Bayes {
 		System.out.println(v.predecirClase(new double[]{5.1,3.5,1.4,0.2})); // setosa
 		System.out.println(v.predecirClase(new double[]{6.9,3.1,4.9,1.5})); // versicolor
 		System.out.println(v.predecirClase(new double[]{5.0,3.4,1.5,0.2})); // setosa
-	}
+	}*/
 	
 }

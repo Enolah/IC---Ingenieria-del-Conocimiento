@@ -1,5 +1,6 @@
 package vista.GUI;
 
+import java.awt.BorderLayout;
 import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -55,18 +56,22 @@ public class VentanaPrincipal extends JFrame {
 	
 	private JPanel panelDatos;
 	private JPanel panelEjemplos;
+	private JPanel informacion;
 	private JPanel panelAlgoritmo;
 	private JPanel contenedor;
 	private JLabel labelDatos;
 	private JLabel labelEjemplos;
 
 	private JMenuBar menu;
-	private JMenuItem itemKMedias;
-	private JMenuItem itemBayes;
-	private JMenuItem itemLLoyd;
 	private JMenuItem cargaEjemploArchivo;
 	private JMenuItem cargarEjemploTexto;
 	private JMenu cargaEjemplos;
+	private JMenu algoritmo;
+	private JMenuItem itemKMedias;
+	private JMenuItem itemBayes;
+	private JMenuItem itemLLoyd;
+	private JMenuItem itemSOM;
+	private JMenu salir;
 	
 	private JTextArea textoEjemplos;
 	
@@ -107,9 +112,11 @@ public void initView(){
 		
 	this.addWindowListener(exitListener);
 	
-	instance.setPreferredSize(new Dimension(1200,700));
-	instance.setResizable(false);
-	instance.setLocationRelativeTo(null);
+	instance.setTitle("Algorimo Bayes, KMedidas, Lloyd y SOM");
+	instance.setPreferredSize(new Dimension(900,700));
+	instance.setResizable(true);
+//	instance.setLocationRelativeTo(getParent());
+	instance.pack();
 	
 	//panelDatos
 	panelDatos = new JPanel();
@@ -180,17 +187,40 @@ public void initView(){
 				
 		panelTest2.add(scroll3);
 
-	
-	
+		//Pasos a seguir para ejecutar el programa
+		
+		informacion = new JPanel();
+		informacion.setLayout(new BorderLayout());
+		JPanel centro= new JPanel();
+		
+		JLabel titulo = new  JLabel("Pasos:");
+		titulo.setFont(new Font("Arial", Font.BOLD, 18));
+		centro.add(titulo);
+		centro.setLayout(new BoxLayout(centro, BoxLayout.Y_AXIS));
+		
+		JLabel paso1= new JLabel("<html>1º Seleccionamos un método para cargar un ejemplo</html>");
+		paso1.setFont(new Font("Arial", Font.ITALIC, 18));
+		JLabel paso2= new JLabel("<html>2º Elegimos un algoritmo del menú</html>");
+		paso2.setFont(new Font("Arial", Font.ITALIC, 18));
+		JLabel paso3= new JLabel("<html>3º Pulsamos el botón de comprobar</html>");
+		paso3.setFont(new Font("Arial", Font.ITALIC, 18));
+		
+		centro.add(paso1);
+		centro.add(paso2);
+		centro.add(paso3);
+		
+		informacion.add(centro, BorderLayout.CENTER);
+		
+		
 	//panel algorimo va ir vacio para poner el panel del algoritmo
 	
-	JPKMedias.getInstance().setClases(clases);
-	JPLloyd.getInstance().setClases(clases);
-
-	JPKMedias.getInstance().initView();
-	
-	JPLloyd.getInstance().initView();
-	JPLloyd.getInstance().setVisible(false);
+//	JPKMedias.getInstance().setClases(clases);
+//	JPLloyd.getInstance().setClases(clases);
+//
+//	JPKMedias.getInstance().initView();
+//	
+//	JPLloyd.getInstance().initView();
+//	JPLloyd.getInstance().setVisible(false);
 	
 
 	panelAlgoritmo = JPKMedias.getInstance();
@@ -200,45 +230,49 @@ public void initView(){
 	/// COSAS DEL MENU
 	
 	menu = new JMenuBar();
-	itemBayes= new JMenuItem("Bayes");
+//	itemBayes= new JMenuItem("Bayes");
+//	
+//	itemBayes.addActionListener(new ActionListener() {
+//		
+//		@Override
+//		public void actionPerformed(ActionEvent arg0) {
+//			// TODO Auto-generated method stub
+//			cambiaBayes();
+//			
+//		}
+//
+//		
+//	});
+//	itemKMedias = new JMenuItem("K-Medias Borroso");
+//	
+//	itemKMedias.addActionListener(new ActionListener() {
+//		
+//		@Override
+//		public void actionPerformed(ActionEvent arg0) {
+//			// TODO Auto-generated method stub
+//			cambiaKmedias();
+//			
+//		}
+//
+//		
+//	});
+//	itemLLoyd = new JMenuItem("LLoyd");
+//	
+//	itemLLoyd.addActionListener(new ActionListener() {
+//		
+//		@Override
+//		public void actionPerformed(ActionEvent arg0) {
+//			// TODO Auto-generated method stub
+//			cambiaLLoyd();
+//			
+//		}
+//
+//		
+//	});
 	
-	itemBayes.addActionListener(new ActionListener() {
-		
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			// TODO Auto-generated method stub
-			cambiaBayes();
-			
-		}
-
-		
-	});
-	itemKMedias = new JMenuItem("K-Medias Borroso");
+	//BARRA DE MENU
 	
-	itemKMedias.addActionListener(new ActionListener() {
-		
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			// TODO Auto-generated method stub
-			cambiaKmedias();
-			
-		}
-
-		
-	});
-	itemLLoyd = new JMenuItem("LLoyd");
-	
-	itemLLoyd.addActionListener(new ActionListener() {
-		
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			// TODO Auto-generated method stub
-			cambiaLLoyd();
-			
-		}
-
-		
-	});
+	//CARGAR EJEMPLOS
 	
 	cargaEjemplos = new JMenu("Cargar ejemplo");
 
@@ -263,20 +297,97 @@ public void initView(){
 			cargarEjemploDesdeArchivo();
 		}
 	});
-
+	
 	cargaEjemplos.add(cargaEjemploArchivo);
 	cargaEjemplos.add(cargarEjemploTexto);
 	
+	
+	//SELECCION DE ALGORTIMOS
+	
+	algoritmo= new JMenu("Algoritmos");
+	
+	itemBayes= new JMenuItem("Bayes");
+	itemBayes.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			cambiaBayes();
+		}
+	});
+	
+	itemKMedias = new JMenuItem("K-Medias Borroso");
+	itemKMedias.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			cambiaKmedias();
+		}
+	});
+	
+	itemLLoyd = new JMenuItem("LLoyd");
+	itemLLoyd.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			cambiaLLoyd();
+		}	
+	});
+	
+	itemSOM= new JMenuItem("SOM");
+	itemSOM.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+		}
+	});
+	
+	//añadirlos al menu
+	algoritmo.add(itemBayes);
+	algoritmo.add(itemKMedias);
+	algoritmo.add(itemLLoyd);
+	algoritmo.add(itemSOM);
+	
+	
+	
+	//BOTON SALIR
+	
+	salir = new JMenu("Salir");
+	
+	JMenuItem si = new JMenuItem("Si");
+	si.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			System.exit(0);
+			
+		}
+	});
+	
+	JMenuItem no = new JMenuItem("No");
+	no.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			
+		}
+	});
+	
+	salir.add(si);
+	salir.add(no);
+	
+	
+	//Añadimos todo a la barra del menu
 	menu.add(cargaEjemplos);
-	menu.add(itemKMedias);
-	menu.add(itemBayes);
-	menu.add(itemLLoyd);
+	menu.add(algoritmo);
+	menu.add(salir);
+	
 	
 	
 	contenedor = new JPanel();
 	contenedor.setLayout(new FlowLayout());
-	contenedor.setPreferredSize(new Dimension(900, 600));
-	contenedor.setBorder(new EmptyBorder(5, 5, 5, 5));
+	contenedor.setPreferredSize(new Dimension(900, 300));
+	contenedor.setBorder(new EmptyBorder(10, 10, 10, 10));
     contenedor.setComponentOrientation(
             ComponentOrientation.LEFT_TO_RIGHT);
 	instance.setContentPane(contenedor);
@@ -286,7 +397,8 @@ public void initView(){
 
 	contenedor.add(panelDatos);
 	contenedor.add(panelEjemplos);
-	contenedor.add(panelAlgoritmo);
+	contenedor.add(informacion);
+
 	
 	instance.pack();
 	
@@ -307,22 +419,23 @@ public void setListaElementos(HashMap<String,ArrayList<Elemento>> listaElementos
 }
 
 private void cambiaBayes() {
-	// TODO Auto-generated method stub
-	
-	this.remove(panelAlgoritmo);
-	
-	panelAlgoritmo=JPBayes.getInstance();
-	JPLloyd.getInstance().setVisible(false);
 
-	JPKMedias.getInstance().setVisible(false);
-	this.add(panelAlgoritmo);
-	JPBayes.getInstance().setVisible(true);
-
-	
-	this.repaint();
-	this.pack();
-
+	BayesPanel b= new BayesPanel();
+	int res= b.showConfirmDialog("Algoritmo de Bayes");
+	if(res==0){
+		
+	}
 }
+
+	private void cambiaSOM(){
+		
+		SOMPanel s= new SOMPanel();
+		int res= s.showConfirmDialog("Algoritmo de Bayes");
+		if(res==0){
+			
+		}
+		
+	}
 
 private void cambiaLLoyd() {
 	// TODO Auto-generated method stub
@@ -364,7 +477,7 @@ private void cambiaKmedias() {
 private void cargarEjemploDesdeArchivo() {
 	
 	JFileChooser jf = new JFileChooser();
-	FileNameExtensionFilter filter = new FileNameExtensionFilter( "*.txt", "text");
+	FileNameExtensionFilter filter = new FileNameExtensionFilter( ".txt", "text");
 	jf.setFileFilter(filter);
 	int resultado= jf.showDialog(instance, "Cargar");
 	

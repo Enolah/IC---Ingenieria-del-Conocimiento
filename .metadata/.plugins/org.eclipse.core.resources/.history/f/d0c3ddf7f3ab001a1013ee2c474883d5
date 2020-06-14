@@ -6,8 +6,8 @@ import Jama.Matrix;
 
 public class Bayes {
 
-	private HashMap<String, Matrix> emes;
-	private HashMap<String, Matrix> ces;
+	private HashMap<String, Math> emes;
+	private HashMap<String, Math> ces;
 	
 	public Bayes() {
 		emes = new HashMap<String, Matrix>();

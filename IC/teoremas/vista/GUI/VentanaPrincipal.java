@@ -57,7 +57,6 @@ public class VentanaPrincipal extends JFrame {
 	private JPanel panelDatos;
 	private JPanel panelEjemplos;
 	private JPanel informacion;
-	//private JPanel panelAlgoritmo;
 	private JPanel contenedor;
 	private JLabel labelDatos;
 	private JLabel labelEjemplos;
@@ -115,7 +114,6 @@ public void initView(){
 	instance.setTitle("Algorimo Bayes, KMedidas, Lloyd y SOM");
 	instance.setPreferredSize(new Dimension(900,700));
 	instance.setResizable(true);
-//	instance.setLocationRelativeTo(getParent());
 	instance.pack();
 	
 	//panelDatos
@@ -211,67 +209,10 @@ public void initView(){
 		
 		informacion.add(centro, BorderLayout.CENTER);
 		
-		
-	//panel algorimo va ir vacio para poner el panel del algoritmo
-	
-//	JPKMedias.getInstance().setClases(clases);
-//	JPLloyd.getInstance().setClases(clases);
-//
-//	JPKMedias.getInstance().initView();
-//	
-//	JPLloyd.getInstance().initView();
-//	JPLloyd.getInstance().setVisible(false);
-	
-
-//	panelAlgoritmo = JPKMedias.getInstance();
-	
-	
-	
-	/// COSAS DEL MENU
-	
-	menu = new JMenuBar();
-//	itemBayes= new JMenuItem("Bayes");
-//	
-//	itemBayes.addActionListener(new ActionListener() {
-//		
-//		@Override
-//		public void actionPerformed(ActionEvent arg0) {
-//			// TODO Auto-generated method stub
-//			cambiaBayes();
-//			
-//		}
-//
-//		
-//	});
-//	itemKMedias = new JMenuItem("K-Medias Borroso");
-//	
-//	itemKMedias.addActionListener(new ActionListener() {
-//		
-//		@Override
-//		public void actionPerformed(ActionEvent arg0) {
-//			// TODO Auto-generated method stub
-//			cambiaKmedias();
-//			
-//		}
-//
-//		
-//	});
-//	itemLLoyd = new JMenuItem("LLoyd");
-//	
-//	itemLLoyd.addActionListener(new ActionListener() {
-//		
-//		@Override
-//		public void actionPerformed(ActionEvent arg0) {
-//			// TODO Auto-generated method stub
-//			cambiaLLoyd();
-//			
-//		}
-//
-//		
-//	});
 	
 	//BARRA DE MENU
-	
+		menu = new JMenuBar();
+		
 	//CARGAR EJEMPLOS
 	
 	cargaEjemplos = new JMenu("Cargar ejemplo");
@@ -281,7 +222,7 @@ public void initView(){
 		
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			// TODO Auto-generated method stub
+		
 			cargarEjemploDesdeTexto();
 		}
 	});
@@ -293,7 +234,7 @@ public void initView(){
 		
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			// TODO Auto-generated method stub
+		
 			cargarEjemploDesdeArchivo();
 		}
 	});
@@ -342,7 +283,7 @@ public void initView(){
 		}
 	});
 	
-	//añadirlos al menu
+	//añadir al menu
 	algoritmo.add(itemBayes);
 	algoritmo.add(itemKMedias);
 	algoritmo.add(itemLLoyd);
@@ -378,6 +319,7 @@ public void initView(){
 	
 	
 	//Añadimos todo a la barra del menu
+	
 	menu.add(cargaEjemplos);
 	menu.add(algoritmo);
 	menu.add(salir);
@@ -478,7 +420,7 @@ private void cargarEjemploDesdeArchivo() {
 			cadena+=elem.getListaString()+"\n";
 			textoEjemplos.setText(cadena);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		
 			e.printStackTrace();
 		}
 

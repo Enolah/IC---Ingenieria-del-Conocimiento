@@ -16,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.Border;
@@ -106,7 +107,7 @@ public class LLoydPanel extends JDialog{
 		pnlL.add(informacion, BorderLayout.NORTH);
 		
 		panelResultados = new JPResultados();
-	//	panelResultados.setPreferredSize(new Dimension(180,600));
+		panelResultados.setPreferredSize(new Dimension(180,200));
 		pnlL.add(panelResultados,BorderLayout.SOUTH);
 		
 		JButton btnComprobar = panelResultados.getButton();
@@ -119,7 +120,7 @@ public class LLoydPanel extends JDialog{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+			
 				String[] nombre_clases = VentanaPrincipal.getInstance().getClasesNombres();
 				
 				double[][] datos_centros = VentanaPrincipal.getInstance().getCentros();
@@ -148,25 +149,30 @@ public class LLoydPanel extends JDialog{
 				
 				
 				//EJEMPLOS
-				ArrayList<double[]> ejemplos = VentanaPrincipal.getInstance().getEjemplos();
-				double[][] datos_prueba = new double[ejemplos.size()][ejemplos.get(0).length];
-				pos =0;
-				for(double [] lista :ejemplos) {
-					datos_prueba[pos]=lista;
-					pos++;
+				try {
+					ArrayList<double[]> ejemplos = VentanaPrincipal.getInstance().getEjemplos();
+					double[][] datos_prueba = new double[ejemplos.size()][ejemplos.get(0).length];
+					pos =0;
+					for(double [] lista :ejemplos) {
+						datos_prueba[pos]=lista;
+						pos++;
+					}
+					IntToDoubleFunction funcion = (i) -> 0.1;
+					double tolerancia = 0.0000000001;
+					int max_iteraciones = 10;
+					
+					Lloyd lloyd = new Lloyd(datos_centros, nombre_clases, datos_entrenamiento, funcion, tolerancia, max_iteraciones);
+					String s = "";
+					for (double[] prueba : datos_prueba) {
+						s += lloyd.predecirClase(prueba);
+						s+= "\n";
+					}
+					
+					panelResultados.setResultados(s);
+				} catch (Exception ex) {
+					JOptionPane.showMessageDialog(null, "Debe introducir un ejemplo antes de comprobarlo");
 				}
-				IntToDoubleFunction funcion = (i) -> 0.1;
-				double tolerancia = 0.0000000001;
-				int max_iteraciones = 10;
-				
-				Lloyd lloyd = new Lloyd(datos_centros, nombre_clases, datos_entrenamiento, funcion, tolerancia, max_iteraciones);
-				String s = "";
-				for (double[] prueba : datos_prueba) {
-					s += lloyd.predecirClase(prueba);
-					s+= "\n";
-				}
-				
-				panelResultados.setResultados(s);
+			
 			}
 			
 			

@@ -13,8 +13,9 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
+import javax.swing.border.EmptyBorder;
 
 import Clase.Clase;
 import algoritmos.Bayes;
@@ -59,7 +60,8 @@ public class BayesPanel extends JDialog{
 		//Resultados de los ejemplos
 				
 		panelResultados = new JPResultados();
-	//	panelResultados.setPreferredSize(new Dimension(180,600));
+		panelResultados.setBorder(new EmptyBorder(10, 10, 10, 10));
+		panelResultados.setPreferredSize(new Dimension(180,200));
 		pnlB.add(panelResultados,BorderLayout.CENTER);
 		
 		JButton btnComprobar = panelResultados.getButton();
@@ -82,12 +84,17 @@ public class BayesPanel extends JDialog{
 				}
 				
 				String s = "";
-				for (double[] ejemplo : VentanaPrincipal.getInstance().getEjemplos()) {
-					s += bayes.predecirClase(ejemplo);
-					s += "\n";
+				if (VentanaPrincipal.getInstance().getEjemplos().size() == 0)
+					JOptionPane.showMessageDialog(null, "Debe introducir un ejemplo antes de comprobarlo");
+				else {
+
+					for (double[] ejemplo : VentanaPrincipal.getInstance().getEjemplos()) {
+						s += bayes.predecirClase(ejemplo);
+						s += "\n";
+					}
+
+					panelResultados.setResultados(s);
 				}
-				
-				panelResultados.setResultados(s);
 			}
 			
 			

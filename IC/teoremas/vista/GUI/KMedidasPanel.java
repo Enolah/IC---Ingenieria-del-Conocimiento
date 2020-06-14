@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import javax.swing.border.EmptyBorder;
@@ -82,6 +83,8 @@ public class KMedidasPanel extends JDialog{
 				//PARAMETROS DE CONFIGURACION
 				JPanel panel = new JPanel();
 				panel.setLayout(new GridLayout(3, 1));
+				panel.setBorder(new EmptyBorder(10, 10, 10, 10));
+				
 				JLabel tituloParams = new  JLabel("Parametros:");
 				tituloParams.setFont(new Font("Arial", Font.BOLD, 18));	
 				tituloParams.setBorder(new EmptyBorder(10, 10, 10, 10));
@@ -89,11 +92,11 @@ public class KMedidasPanel extends JDialog{
 				
 				JLabel lblNewLabel = new JLabel("Tolerancia = 0.01");
 				panel.add(lblNewLabel);
-				lblNewLabel.setBorder(new EmptyBorder(10, 10, 10, 10));
+				
 
 				JLabel lblPesoExponencial = new JLabel("Peso exponencial = 2");
 				panel.add(lblPesoExponencial);
-				lblPesoExponencial.setBorder(new EmptyBorder(10, 10, 10, 10));
+
 				
 				panel.setPreferredSize(informacion.getPreferredSize());
 
@@ -101,7 +104,7 @@ public class KMedidasPanel extends JDialog{
 				pnlK.add(informacion, BorderLayout.NORTH);
 				
 				panelResultados = new JPResultados();
-	
+				panelResultados.setPreferredSize(new Dimension(180,200));
 				pnlK.add(panelResultados,BorderLayout.SOUTH);
 				
 				JButton btnComprobar = panelResultados.getButton();
@@ -143,27 +146,33 @@ public class KMedidasPanel extends JDialog{
 						
 						
 						//EJEMPLOS
-						ArrayList<double[]> ejemplos = VentanaPrincipal.getInstance().getEjemplos();
-						double[][] datos_prueba = new double[ejemplos.size()][ejemplos.get(0).length];
-						pos =0;
-						for(double [] lista :ejemplos) {
-							datos_prueba[pos]=lista;
-							pos++;
-						}
-						
+						try {
+							ArrayList<double[]> ejemplos = VentanaPrincipal.getInstance().getEjemplos();
+							
+							double[][] datos_prueba = new double[ejemplos.size()][ejemplos.get(0).length];
+							pos =0;
+							for(double [] lista :ejemplos) {
+								datos_prueba[pos]=lista;
+								pos++;
+							}
+							
 
-						double tolerancia = 0.01,
-								peso_exponencial = 2;
+							double tolerancia = 0.01,
+									peso_exponencial = 2;
 
-						KMeans kmeans = new KMeans(datos_centros, nombre_clases, datos_entrenamiento, tolerancia, peso_exponencial);
-						
-						String s = "";
-						for (Vector<Double> ejemplo : MatrizToVectorVector.metodoCutre(datos_prueba)) {
-							s += kmeans.comprobarPunto(ejemplo);
-							s += "\n";
+							KMeans kmeans = new KMeans(datos_centros, nombre_clases, datos_entrenamiento, tolerancia, peso_exponencial);
+							
+							String s = "";
+							for (Vector<Double> ejemplo : MatrizToVectorVector.metodoCutre(datos_prueba)) {
+								s += kmeans.comprobarPunto(ejemplo);
+								s += "\n";
+							}
+							
+							panelResultados.setResultados(s);
+						} catch (Exception ex) {
+							JOptionPane.showMessageDialog(null, "Debe introducir un ejemplo antes de comprobarlo");
 						}
-						
-						panelResultados.setResultados(s);
+					
 					}
 					
 					

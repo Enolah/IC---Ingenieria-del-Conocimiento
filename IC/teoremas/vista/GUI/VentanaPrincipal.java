@@ -111,7 +111,7 @@ public void initView(){
 		
 	this.addWindowListener(exitListener);
 	
-	instance.setTitle("Algorimo Bayes, KMedidas, Lloyd y SOM");
+	instance.setTitle("Algorimo Bayes, KMedias, Lloyd y SOM");
 	instance.setPreferredSize(new Dimension(900,700));
 	instance.setResizable(true);
 	instance.pack();
@@ -393,7 +393,7 @@ private void cambiaLLoyd() {
 private void cambiaKmedias() {
 
 	KMedidasPanel k= new KMedidasPanel();
-	int res= k.showConfirmDialog("Algoritmo de KMedidas");
+	int res= k.showConfirmDialog("Algoritmo de KMedias");
 	if(res==0){
 		
 	}

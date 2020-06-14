@@ -40,7 +40,7 @@ public class KMedidasPanel extends JDialog{
 	
 	
 	public KMedidasPanel(){
-		super (new JFrame(), "KMedidas",true);
+		super (new JFrame(), "KMedias",true);
 		initGUI();
 	}
 

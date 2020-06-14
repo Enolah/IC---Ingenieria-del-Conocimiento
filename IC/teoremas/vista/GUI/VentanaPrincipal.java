@@ -217,7 +217,7 @@ public void initView(){
 	
 	cargaEjemplos = new JMenu("Cargar ejemplo");
 
-	cargarEjemploTexto= new JMenuItem("Introducir uno nuevo");
+	cargarEjemploTexto= new JMenuItem("Cargar manualmente");
 	cargarEjemploTexto.addActionListener(new ActionListener() {
 		
 		@Override
@@ -434,7 +434,7 @@ private void cargarEjemploDesdeArchivo() {
 
 private void cargarEjemploDesdeTexto() {
 	
-	String texto = JOptionPane.showInputDialog("Introduzca el un elemento");
+	String texto = JOptionPane.showInputDialog("<html>Introduzca un elemento separado por comas, siguiendo el siguiente formato: 0.0,0.0,0.0,0.0 </html>");
 	
 	if(texto!=null) {
 		double[] lista=null;

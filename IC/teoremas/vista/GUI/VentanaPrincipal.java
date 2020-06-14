@@ -57,7 +57,7 @@ public class VentanaPrincipal extends JFrame {
 	private JPanel panelDatos;
 	private JPanel panelEjemplos;
 	private JPanel informacion;
-	private JPanel panelAlgoritmo;
+	//private JPanel panelAlgoritmo;
 	private JPanel contenedor;
 	private JLabel labelDatos;
 	private JLabel labelEjemplos;
@@ -440,19 +440,23 @@ private void cambiaBayes() {
 private void cambiaLLoyd() {
 	// TODO Auto-generated method stub
 	
-	this.remove(panelAlgoritmo);
-	
-	panelAlgoritmo= JPLloyd.getInstance();
-	JPBayes.getInstance().setVisible(false);
+//	this.remove(panelAlgoritmo);
+//	
+//	panelAlgoritmo= JPLloyd.getInstance();
+//	JPBayes.getInstance().setVisible(false);
+//
+//	JPKMedias.getInstance().setVisible(false);
+//	this.add(panelAlgoritmo);
+//
+//	JPLloyd.getInstance().setVisible(true);
+//	
+//	this.repaint();
 
-	JPKMedias.getInstance().setVisible(false);
-	this.add(panelAlgoritmo);
-
-	JPLloyd.getInstance().setVisible(true);
-	
-	this.repaint();
-
-	
+	LLoydPanel l= new LLoydPanel();
+	int res= l.showConfirmDialog("Algoritmo de Bayes");
+	if(res==0){
+		
+	}
 	
 
 	
@@ -460,15 +464,21 @@ private void cambiaLLoyd() {
 private void cambiaKmedias() {
 	// TODO Auto-generated method stub
 	
-	this.remove(panelAlgoritmo);
+//	this.remove(panelAlgoritmo);
+//	
+//	panelAlgoritmo= JPKMedias.getInstance();
+//	JPLloyd.getInstance().setVisible(false);
+//	JPBayes.getInstance().setVisible(false);
+//	this.add(panelAlgoritmo);
+//	JPKMedias.getInstance().setVisible(true);
+//	
+//	this.repaint();
 	
-	panelAlgoritmo= JPKMedias.getInstance();
-	JPLloyd.getInstance().setVisible(false);
-	JPBayes.getInstance().setVisible(false);
-	this.add(panelAlgoritmo);
-	JPKMedias.getInstance().setVisible(true);
-	
-	this.repaint();
+	KMedidasPanel k= new KMedidasPanel();
+//	int res= k.showConfirmDialog("Algoritmo de Bayes");
+//	if(res==0){
+//		
+//	}
 }
 
 
